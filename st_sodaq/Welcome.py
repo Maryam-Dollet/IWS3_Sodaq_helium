@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import plotly.express as px
 from load import load_sensor_data
 from time import sleep
@@ -6,33 +7,50 @@ from time import sleep
 st.set_page_config(
     page_title = 'IWS3 Data Dashboard',
     page_icon = ':ear_of_rice:',
+    layout= "wide"
 )
 
 st.title("Helium IWS3 Data Dashboard")
 
-sensor_df = load_sensor_data()
+placeholder = st.empty()
 
-with st.expander("Data"):
-    st.dataframe(sensor_df, use_container_width=True)
+for seconds in range(500):
 
-fig = px.line(sensor_df, x='Horodateur', y="temperature", range_y=[0,38])
-st.plotly_chart(fig)
+    sensor_df = load_sensor_data()
 
-fig = px.line(sensor_df, x='Horodateur', y="pressure", range_y=[0,1100])
-st.plotly_chart(fig)
+    sensor_df['time'] = pd.to_datetime(sensor_df['Horodateur'], format='%m/%d/%Y %H:%M:%S') 
 
-fig = px.line(sensor_df, x='Horodateur', y="humidity", range_y=[0,100])
-st.plotly_chart(fig)
+    with placeholder.container():
 
-fig = px.line(sensor_df, x='Horodateur', y="dewPoint", range_y=[0,100])
-st.plotly_chart(fig)
+        with st.expander("Data"):
+            st.dataframe(sensor_df, use_container_width=True)
+        
+        if sensor_df.tail(1).moisture.values[0] >= 500:
+            st.write("Actual State of the Soil: Wet")
+        else:
+            st.write("Actual State of the Soil: Dry")
 
-fig = px.line(sensor_df, x='Horodateur', y="altitude", range_y=[0,500])
-st.plotly_chart(fig)
+        col1, col2 = st.columns(2)
 
-fig = px.line(sensor_df, x='Horodateur', y="gas", range_y=[0,1000])
-st.plotly_chart(fig)
+        with col1:
+            fig = px.line(sensor_df, x='time', y="temperature", range_y=[0,38], title="Temperature Measures", labels={"temperature":"temperature ( °C )"})
+            st.plotly_chart(fig)
 
-fig = px.line(sensor_df, x='Horodateur', y="moisture", range_y=[0,1010])
-st.plotly_chart(fig)
+            fig = px.line(sensor_df, x='time', y="humidity", range_y=[0,100], title="Humidity Measures", labels={"humidity":"humidity ( % )"})
+            st.plotly_chart(fig)
+
+            fig = px.line(sensor_df, x='time', y="gas", range_y=[0,1000], title="Gas Measures", labels={"gas":"gas ( KOhms )"})
+            st.plotly_chart(fig)
+
+        with col2:
+            fig = px.line(sensor_df, x='time', y="pressure", range_y=[0,1100], title="Pressure Measures", labels={"pressure":"pressure ( hPa )"})
+            st.plotly_chart(fig)
+
+            fig = px.line(sensor_df, x='time', y="dewPoint", range_y=[0,30], title="Dew Point Measures", labels={"dewPoint":"dew point ( °C )"})
+            st.plotly_chart(fig)
+
+            fig = px.line(sensor_df, x='time', y="moisture", range_y=[0,1010], title="Soil Moisture Measures", labels={"moisture":"soil moisture"})
+            st.plotly_chart(fig)
+        
+        sleep(40)
 
