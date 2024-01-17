@@ -137,12 +137,12 @@ void loop() {
   debugSerial.print(moisture);
   debugSerial.println(" ");
 
-  int16_t temperature_raw = (int16_t)(temperature);
-  int16_t pressure_raw = (int16_t)(pressure);
-  int16_t humidity_raw = (int16_t)(humidity);
-  int16_t dewPoint_raw = (int16_t)(dewPoint);
-  int16_t altitude_raw = (int16_t)(altitude);
-  int16_t gas_raw = (int16_t)(gas);
+  int16_t temperature_raw = (int16_t)(temperature * 100);
+  int16_t pressure_raw = (int16_t)(pressure * 100);
+  int16_t humidity_raw = (int16_t)(humidity * 100);
+  int16_t dewPoint_raw = (int16_t)(dewPoint * 100);
+  int16_t altitude_raw = (int16_t)(altitude * 100);
+  int16_t gas_raw = (int16_t)(gas * 100);
   int16_t moisture_raw = (int16_t)(moisture);
 
   // Put the sensor values into the buffer
@@ -199,7 +199,7 @@ void loop() {
     default:
       break;
     }
-    delay(1000);
+    delay(30000);
 
   delay(5000);
 }

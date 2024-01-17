@@ -36,4 +36,3 @@ st.plotly_chart(fig)
 fig = px.line(sensor_df, x='Horodateur', y="moisture", range_y=[0,1010])
 st.plotly_chart(fig)
 
-sleep(10000)
