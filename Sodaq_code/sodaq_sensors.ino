@@ -1,6 +1,5 @@
 #include <Adafruit_BME680.h>
 #include <Sodaq_RN2483.h>
-#include "sodaq_secrets.h"
 
 #define debugSerial SerialUSB
 
