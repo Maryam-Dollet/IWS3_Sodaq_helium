@@ -39,11 +39,11 @@ for seconds in range(500):
             fig = px.line(sensor_df, x='time', y="humidity", range_y=[0,100], title="Humidity Measures", labels={"humidity":"humidity ( % )"}, markers=True)
             st.plotly_chart(fig)
 
-            fig = px.line(sensor_df, x='time', y="gas", range_y=[800,1200], title="Gas Measures", labels={"gas":"gas ( KOhms )"}, markers=True)
+            fig = px.line(sensor_df, x='time', y="gas", range_y=[0,1000], title="Gas Measures", labels={"gas":"gas ( KOhms )"}, markers=True)
             st.plotly_chart(fig)
 
         with col2:
-            fig = px.line(sensor_df, x='time', y="pressure", range_y=[0,1100], title="Pressure Measures", labels={"pressure":"pressure ( hPa )"}, markers=True)
+            fig = px.line(sensor_df, x='time', y="pressure", range_y=[900,1100], title="Pressure Measures", labels={"pressure":"pressure ( hPa )"}, markers=True)
             st.plotly_chart(fig)
 
             fig = px.line(sensor_df, x='time', y="dewPoint", range_y=[0,30], title="Dew Point Measures", labels={"dewPoint":"dew point ( °C )"}, markers=True)
