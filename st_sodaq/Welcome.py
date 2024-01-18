@@ -33,23 +33,23 @@ for seconds in range(500):
         col1, col2 = st.columns(2)
 
         with col1:
-            fig = px.line(sensor_df, x='time', y="temperature", range_y=[0,38], title="Temperature Measures", labels={"temperature":"temperature ( °C )"})
+            fig = px.line(sensor_df, x='time', y="temperature", range_y=[0,38], title="Temperature Measures", labels={"temperature":"temperature ( °C )"}, markers=True)
             st.plotly_chart(fig)
 
-            fig = px.line(sensor_df, x='time', y="humidity", range_y=[0,100], title="Humidity Measures", labels={"humidity":"humidity ( % )"})
+            fig = px.line(sensor_df, x='time', y="humidity", range_y=[0,100], title="Humidity Measures", labels={"humidity":"humidity ( % )"}, markers=True)
             st.plotly_chart(fig)
 
-            fig = px.line(sensor_df, x='time', y="gas", range_y=[0,1000], title="Gas Measures", labels={"gas":"gas ( KOhms )"})
+            fig = px.line(sensor_df, x='time', y="gas", range_y=[0,1000], title="Gas Measures", labels={"gas":"gas ( KOhms )"}, markers=True)
             st.plotly_chart(fig)
 
         with col2:
-            fig = px.line(sensor_df, x='time', y="pressure", range_y=[0,1100], title="Pressure Measures", labels={"pressure":"pressure ( hPa )"})
+            fig = px.line(sensor_df, x='time', y="pressure", range_y=[0,1100], title="Pressure Measures", labels={"pressure":"pressure ( hPa )"}, markers=True)
             st.plotly_chart(fig)
 
-            fig = px.line(sensor_df, x='time', y="dewPoint", range_y=[0,30], title="Dew Point Measures", labels={"dewPoint":"dew point ( °C )"})
+            fig = px.line(sensor_df, x='time', y="dewPoint", range_y=[0,30], title="Dew Point Measures", labels={"dewPoint":"dew point ( °C )"}, markers=True)
             st.plotly_chart(fig)
 
-            fig = px.line(sensor_df, x='time', y="moisture", range_y=[0,1010], title="Soil Moisture Measures", labels={"moisture":"soil moisture"})
+            fig = px.line(sensor_df, x='time', y="moisture", range_y=[0,1010], title="Soil Moisture Measures", labels={"moisture":"soil moisture"}, markers=True)
             st.plotly_chart(fig)
             
             sleep(40)
