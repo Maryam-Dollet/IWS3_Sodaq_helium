@@ -18,6 +18,8 @@ for seconds in range(500):
 
     sensor_df = load_sensor_data().iloc[:, : 9]
 
+    sensor_df = sensor_df.dropna(axis = 0, how = 'all')
+
     sensor_df['time'] = pd.to_datetime(sensor_df['Horodateur'], format='%m/%d/%Y %H:%M:%S') 
 
     with placeholder.container():
