@@ -16,7 +16,7 @@ placeholder = st.empty()
 
 for seconds in range(500):
 
-    sensor_df = load_sensor_data()
+    sensor_df = load_sensor_data().iloc[:, : 9]
 
     sensor_df['time'] = pd.to_datetime(sensor_df['Horodateur'], format='%m/%d/%Y %H:%M:%S') 
 
