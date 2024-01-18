@@ -1,9 +1,6 @@
 import re
 import pandas as pd
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+import streamlit as st
 
 def convert_google_sheet_url(url):
     # Regular expression to match and capture the necessary part of the URL
@@ -19,7 +16,7 @@ def convert_google_sheet_url(url):
     return new_url
 
 def load_sensor_data():
-    url = os.getenv("GOOGLE_SHEET_URL")
+    url = st.secrets.GOOGLE_SHEET_URL
     new_url = convert_google_sheet_url(url)
     df = pd.read_csv(new_url)
 
