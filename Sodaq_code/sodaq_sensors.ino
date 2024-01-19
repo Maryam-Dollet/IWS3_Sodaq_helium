@@ -106,7 +106,6 @@ void loop() {
   float gas = bme.gas_resistance / 1000.0;
   double dewPoint = dewPointFast(temperature, humidity);
 
-  // uint8_t data[] = {temperature, pressure, altitude, humidity, gas, moisture};
 
   debugSerial.print("Temperature = ");
   debugSerial.print(temperature);
